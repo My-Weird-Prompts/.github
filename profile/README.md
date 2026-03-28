@@ -12,11 +12,11 @@
 </p>
 
 <p align="center">
-  <a href="https://myweirdprompts.com">Website</a> ·
-  <a href="https://open.spotify.com/show/6egnotAwceSYHZR6AeGgdL">Spotify</a> ·
-  <a href="https://podcasts.apple.com/us/podcast/my-weird-prompts/id1868354117">Apple Podcasts</a> ·
-  <a href="https://www.youtube.com/playlist?list=PLSi3MqkoIi1ci0oupBivGrJP_0VSzanF4">YouTube</a> ·
-  <a href="https://myweirdprompts.com/feed.xml">RSS</a>
+  <a href="https://open.spotify.com/show/6egnotAwceSYHZR6AeGgdL"><img src="https://img.shields.io/badge/Spotify-1DB954?style=for-the-badge&logo=spotify&logoColor=white" alt="Spotify" /></a>
+  <a href="https://podcasts.apple.com/us/podcast/my-weird-prompts/id1868354117"><img src="https://img.shields.io/badge/Apple_Podcasts-9933CC?style=for-the-badge&logo=apple-podcasts&logoColor=white" alt="Apple Podcasts" /></a>
+  <a href="https://www.youtube.com/playlist?list=PLSi3MqkoIi1ci0oupBivGrJP_0VSzanF4"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" /></a>
+  <a href="https://myweirdprompts.com/feed.xml"><img src="https://img.shields.io/badge/RSS-FFA500?style=for-the-badge&logo=rss&logoColor=white" alt="RSS Feed" /></a>
+  <a href="https://myweirdprompts.com"><img src="https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Website" /></a>
 </p>
 
 ---
@@ -24,6 +24,25 @@
 My Weird Prompts is a fully automated podcast built on a simple loop: a human records a weird question, an AI pipeline turns it into a complete podcast episode — script, voices, cover art, show notes, and all. No question is too obscure, no rabbit hole too deep.
 
 Daniel Rosehill, a technology communications specialist based in Jerusalem, records short voice memos with whatever question is on his mind. The pipeline he built from scratch takes it from there — transcribing, writing, fact-checking, voicing, assembling, and publishing the episode autonomously.
+
+## The Mission
+
+My Weird Prompts is more than a podcast — it's a **digital garden**, an ever-growing collection of AI-powered explorations at the frontier of human-AI learning and knowledge discovery, with a fully transparent process.
+
+- **Curiosity-Driven** — Every episode starts with a genuine question — something Daniel wondered about while walking the dog, making coffee, or staring at the ceiling. The AI hosts take it from there.
+- **Transparent Process** — The generation process is [fully documented](https://myweirdprompts.com/technical). From transcription to script generation, fact-checking to text-to-speech — every stage is explained. The full [episode archive is published as an open dataset on Hugging Face](https://huggingface.co/datasets/My-Weird-Prompts/episodes) and [archived on Zenodo](https://zenodo.org/communities/myweirdprompts) with DOIs.
+- **A Living Digital Garden** — Each episode is a new node in an ever-expanding web of ideas, topics, and connections. Explore the [topic graph](https://myweirdprompts.com/explore) to see how they connect.
+
+## By the Numbers
+
+| Metric | Value |
+|--------|-------|
+| Episodes published | **1,660+** |
+| Total audio | **345+ hours** |
+| Plays tracked (since Feb 2026) | **61,000+** |
+| Countries listening | **30** |
+| Top countries | US, France, Sweden, Germany, Spain, Canada, Singapore, Israel |
+| Episodes with plays | **894** |
 
 ## The Cast
 
@@ -57,6 +76,7 @@ TTS (Chatterbox) → Audio assembly → Published episode
 | Repository | Description |
 |------------|-------------|
 | [pipeline](https://github.com/My-Weird-Prompts/pipeline) | Episode generation pipeline — prompt enhancement, script generation, TTS, audio assembly, and publication |
+| [episodes](https://github.com/My-Weird-Prompts/episodes) | Complete episode catalog (CSV) with metadata for all published episodes |
 
 ## Tech Stack
 
@@ -71,31 +91,32 @@ TTS (Chatterbox) → Audio assembly → Published episode
 
 ## Listen
 
-| Platform | Link |
-|----------|------|
-| Website | [myweirdprompts.com](https://myweirdprompts.com) |
-| Spotify | [open.spotify.com/show/...](https://open.spotify.com/show/6egnotAwceSYHZR6AeGgdL) |
-| Apple Podcasts | [podcasts.apple.com/...](https://podcasts.apple.com/us/podcast/my-weird-prompts/id1868354117) |
-| YouTube | [youtube.com/playlist/...](https://www.youtube.com/playlist?list=PLSi3MqkoIi1ci0oupBivGrJP_0VSzanF4) |
-| RSS Feed | [myweirdprompts.com/feed.xml](https://myweirdprompts.com/feed.xml) |
+<p>
+  <a href="https://open.spotify.com/show/6egnotAwceSYHZR6AeGgdL"><img src="https://img.shields.io/badge/Spotify-1DB954?style=flat-square&logo=spotify&logoColor=white" alt="Spotify" /></a>
+  <a href="https://podcasts.apple.com/us/podcast/my-weird-prompts/id1868354117"><img src="https://img.shields.io/badge/Apple_Podcasts-9933CC?style=flat-square&logo=apple-podcasts&logoColor=white" alt="Apple Podcasts" /></a>
+  <a href="https://www.youtube.com/playlist?list=PLSi3MqkoIi1ci0oupBivGrJP_0VSzanF4"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube" /></a>
+  <a href="https://myweirdprompts.com/feed.xml"><img src="https://img.shields.io/badge/RSS_Feed-FFA500?style=flat-square&logo=rss&logoColor=white" alt="RSS" /></a>
+  <a href="https://myweirdprompts.com"><img src="https://img.shields.io/badge/Website-000000?style=flat-square&logo=vercel&logoColor=white" alt="Website" /></a>
+</p>
 
 ## Community & Social
 
-| | Platform | Handle |
-|---|----------|--------|
-| 🦋 | [Bluesky](https://bsky.app/profile/myweirdprompts.bsky.social) | @myweirdprompts.bsky.social |
-| ✖️ | [X / Twitter](https://x.com/myweirdprompts) | @myweirdprompts |
-| 📸 | [Instagram](https://www.instagram.com/myweirdprompts/) | @myweirdprompts |
-| 📣 | [Telegram](https://t.me/myweirdprompts) | @myweirdprompts |
-| 💬 | [Discord](https://discord.gg/EYBksT2A8m) | MWP Community |
-| 📘 | [Facebook](https://facebook.com/myweirdprompts) | myweirdprompts |
-| 🤗 | [Hugging Face](https://huggingface.co/My-Weird-Prompts) | My-Weird-Prompts |
+<p>
+  <a href="https://bsky.app/profile/myweirdprompts.bsky.social"><img src="https://img.shields.io/badge/Bluesky-0085FF?style=flat-square&logo=bluesky&logoColor=white" alt="Bluesky" /></a>
+  <a href="https://x.com/myweirdprompts"><img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white" alt="X / Twitter" /></a>
+  <a href="https://www.instagram.com/myweirdprompts/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram" /></a>
+  <a href="https://t.me/myweirdprompts"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white" alt="Telegram" /></a>
+  <a href="https://discord.gg/EYBksT2A8m"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://facebook.com/myweirdprompts"><img src="https://img.shields.io/badge/Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Facebook" /></a>
+  <a href="https://huggingface.co/My-Weird-Prompts"><img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face" /></a>
+</p>
 
 ## Links
 
 - **About the show** — [myweirdprompts.com/about](https://myweirdprompts.com/about)
 - **Technical white paper** — [myweirdprompts.com/technical](https://myweirdprompts.com/technical)
 - **Topic explorer** — [myweirdprompts.com/explore](https://myweirdprompts.com/explore)
+- **Research & datasets** — [myweirdprompts.com/research](https://myweirdprompts.com/research)
 - **Created by** — [Daniel Rosehill](https://danielrosehill.com)
 
 ---
