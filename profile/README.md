@@ -23,7 +23,7 @@
 
 My Weird Prompts is a fully automated podcast built on a simple loop: a human records a weird question, an AI pipeline turns it into a complete podcast episode — script, voices, cover art, show notes, and all. No question is too obscure, no rabbit hole too deep.
 
-Daniel Rosehill, a technology communications specialist based in Jerusalem, records short voice memos with whatever question is on his mind. The pipeline he built from scratch takes it from there — transcribing, writing, fact-checking, voicing, assembling, and publishing the episode autonomously.
+[Daniel Rosehill](https://danielrosehill.com), a technology communications specialist based in Jerusalem, records short voice memos with whatever question is on his mind. The pipeline he built from scratch takes it from there — transcribing, writing, fact-checking, voicing, assembling, and publishing the episode autonomously.
 
 ## The Mission
 
@@ -42,7 +42,6 @@ My Weird Prompts is more than a podcast — it's a **digital garden**, an ever-g
 | Plays tracked (since Feb 2026) | **61,000+** |
 | Countries listening | **30** |
 | Top countries | US, France, Sweden, Germany, Spain, Canada, Singapore, Israel |
-| Episodes with plays | **894** |
 
 ## The Cast
 
@@ -77,6 +76,7 @@ TTS (Chatterbox) → Audio assembly → Published episode
 |------------|-------------|
 | [pipeline](https://github.com/My-Weird-Prompts/pipeline) | Episode generation pipeline — prompt enhancement, script generation, TTS, audio assembly, and publication |
 | [episodes](https://github.com/My-Weird-Prompts/episodes) | Complete episode catalog (CSV) with metadata for all published episodes |
+| [mcp-server](https://github.com/My-Weird-Prompts/mcp-server) | MCP server for podcast administration — episode generation, job management, and content queries |
 
 ## Tech Stack
 
