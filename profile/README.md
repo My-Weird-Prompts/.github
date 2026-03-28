@@ -59,16 +59,29 @@ My Weird Prompts is more than a podcast — it's a **digital garden**, an ever-g
 
 ## How It Works
 
+The pipeline is a [LangGraph](https://github.com/langchain-ai/langgraph) multi-agent system with four stages, each handled by a specialized agent:
+
 ```
-Voice memo → Transcription → LLM script generation → AI review →
-TTS (Chatterbox) → Audio assembly → Published episode
+START → Prompt Enhancement → Grounding → Script Writer → Review → END
+                                ↓
+                        [Web Search + RAG +
+                         Episode Memory +
+                         Episode Planning]
 ```
 
-1. **Record** — Daniel records a short voice memo with a question or topic
-2. **Transcribe & Plan** — Audio is sent to a webhook, transcribed, and an episode plan is generated
-3. **Write & Fact-Check** — An LLM writes the full script, then editing passes review for accuracy and flow
-4. **Voice & Assemble** — Each character's lines are voiced using [Chatterbox](https://github.com/resemble-ai/chatterbox) on parallel GPU workers via [Modal](https://modal.com), then assembled into a complete episode
-5. **Publish** — Cover art is generated, metadata extracted, and the episode is published everywhere — automatically
+1. **Prompt Enhancement Agent** — Transcribes the voice memo (Gemini multimodal), cleans up the text, fixes typos, and extracts any private production direction (host_notes) from the prompt.
+
+2. **Grounding Agent** — Runs web search (Tavily), retrieves similar past episodes via pgvector RAG, loads episode memory for cross-references ("As we discussed in episode 230..."), and generates a structured episode plan. All sub-stages fail-open so a search failure doesn't block generation.
+
+3. **Script Writer** — Generates the full podcast dialogue. Uses a **randomized model pool** (MiMo v2 Pro, DeepSeek v3.2, MiniMax M2.7, Gemini 3 Flash) — each episode gets a random model for natural A/B testing of output quality.
+
+4. **Review Agent** — Cross-family LLM review: always uses a different model family than the script writer. Additive-only (never truncates content), followed by deterministic regex cleanup of verbal tics and formatting issues.
+
+After the script pipeline, the episode continues through:
+
+5. **Parallel TTS** — Script is parsed into segments, distributed across 3 parallel GPU workers running [Chatterbox](https://github.com/resemble-ai/chatterbox) on [Modal](https://modal.com). Pre-computed voice conditionals eliminate per-segment voice processing overhead.
+
+6. **Assembly & Publish** — Segments are assembled with intros, transitions, and disclaimers. Cover art is generated (Fal AI), metadata extracted, and the episode is published to R2, PostgreSQL, podcast feeds, and social channels — all automatically.
 
 ## Open Source
 
@@ -80,7 +93,7 @@ TTS (Chatterbox) → Audio assembly → Published episode
 
 ## Tech Stack
 
-- **LLMs** — Multiple models via [OpenRouter](https://openrouter.ai) (script generation, review, metadata)
+- **LLM Gateway** — [OpenRouter](https://openrouter.ai) (unified API routing to all models)
 - **TTS** — [Chatterbox](https://github.com/resemble-ai/chatterbox) with parallel GPU workers and pre-computed voice conditionals
 - **GPU Compute** — [Modal](https://modal.com) (serverless GPU infrastructure for TTS)
 - **Orchestration** — LangGraph pipeline with multi-agent architecture
@@ -88,6 +101,18 @@ TTS (Chatterbox) → Audio assembly → Published episode
 - **Storage** — Cloudflare R2 (audio, images, transcripts)
 - **Frontend** — [Astro](https://astro.build) with interactive topic explorer (Sigma.js), deployed on Vercel
 - **Image Generation** — Fal AI (cover art)
+
+### LLM Models
+
+All LLM calls are routed through OpenRouter. Different stages use different models:
+
+| Stage | Models | Role |
+|-------|--------|------|
+| **Script Generation** | Xiaomi MiMo v2 Pro, DeepSeek v3.2, MiniMax M2.7, Gemini 3 Flash | Randomized pool for A/B testing — each episode uses one, selected at random |
+| **Script Review** | DeepSeek v3.2, Qwen 3 235B, Xiaomi MiMo v2 Flash | Cross-family review — always a different model family than the script writer |
+| **Prompt Enhancement** | Xiaomi MiMo v2 Flash | Transcription cleanup, typo fixing, host_notes extraction |
+| **Planning & Metadata** | Xiaomi MiMo v2 Flash | Episode planning, tagging, categorization |
+| **Transcription** | Gemini 3 Flash | Multimodal audio input (direct audio-to-text) |
 
 ## Listen
 
