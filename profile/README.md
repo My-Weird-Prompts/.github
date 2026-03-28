@@ -76,7 +76,7 @@ TTS (Chatterbox) → Audio assembly → Published episode
 |------------|-------------|
 | [pipeline](https://github.com/My-Weird-Prompts/pipeline) | Episode generation pipeline — prompt enhancement, script generation, TTS, audio assembly, and publication |
 | [episodes](https://github.com/My-Weird-Prompts/episodes) | Complete episode catalog (CSV) with metadata for all published episodes |
-| [mcp-server](https://github.com/My-Weird-Prompts/mcp-server) | MCP server for podcast administration — episode generation, job management, and content queries |
+| [admin-mcp-server](https://github.com/My-Weird-Prompts/admin-mcp-server) | MCP server for podcast administration — episode generation, job management, and content queries |
 
 ## Tech Stack
 
