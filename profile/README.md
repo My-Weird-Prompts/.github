@@ -7,7 +7,7 @@
 <h1 align="center">My Weird Prompts</h1>
 
 <p align="center">
-  <strong>An AI-generated podcast where curiosity meets automation.</strong><br/>
+  <strong>The human-AI collaboration podcast.</strong><br/>
   <em>Where Curiosity Meets AI — Stay curious.</em>
 </p>
 
@@ -37,8 +37,8 @@ My Weird Prompts is more than a podcast — it's a **digital garden**, an ever-g
 
 | Metric | Value |
 |--------|-------|
-| Episodes published | **1,660+** |
-| Total audio | **345+ hours** |
+| Episodes published | **2,110+** |
+| Total audio | **500+ hours** |
 | Plays tracked (since Feb 2026) | **61,000+** |
 | Countries listening | **30** |
 | Top countries | US, France, Sweden, Germany, Spain, Canada, Singapore, Israel |
@@ -69,17 +69,17 @@ START → Prompt Enhancement → Grounding → Script Writer → Review → END
                          Episode Planning]
 ```
 
-1. **Prompt Enhancement Agent** — Transcribes the voice memo (Gemini multimodal), cleans up the text, fixes typos, and extracts any private production direction (host_notes) from the prompt.
+1. **Prompt Enhancement Agent** — Transcribes the voice memo, cleans up the text, fixes typos, and extracts any private production direction (host_notes) from the prompt.
 
 2. **Grounding Agent** — Runs web search (Tavily), retrieves similar past episodes via pgvector RAG, loads episode memory for cross-references ("As we discussed in episode 230..."), and generates a structured episode plan. All sub-stages fail-open so a search failure doesn't block generation.
 
-3. **Script Writer** — Generates the full podcast dialogue. Uses a **randomized model pool** (MiMo v2 Pro, DeepSeek v3.2, MiniMax M2.7, Gemini 3 Flash) — each episode gets a random model for natural A/B testing of output quality.
+3. **Script Writer** — Generates the full podcast dialogue using Claude Sonnet 4.6 via the Anthropic SDK. Prompt caching keeps system prompt costs low across episodes.
 
-4. **Review Agent** — Cross-family LLM review: always uses a different model family than the script writer. Additive-only (never truncates content), followed by deterministic regex cleanup of verbal tics and formatting issues.
+4. **Review Agent** — LLM-powered fact-checking and style review, followed by deterministic regex cleanup of verbal tics. Fails open with shrinkage guards to prevent accidental content loss.
 
 After the script pipeline, the episode continues through:
 
-5. **Parallel TTS** — Script is parsed into segments, distributed across 3 parallel GPU workers running [Chatterbox](https://github.com/resemble-ai/chatterbox) on [Modal](https://modal.com). Pre-computed voice conditionals eliminate per-segment voice processing overhead.
+5. **Parallel TTS** — Script is parsed into segments, distributed across 3 parallel GPU workers running [Chatterbox](https://github.com/resemble-ai/chatterbox) Regular on [Modal](https://modal.com) (A10G GPUs). Pre-computed voice conditionals eliminate per-segment voice processing overhead.
 
 6. **Assembly & Publish** — Segments are assembled with intros, transitions, and disclaimers. Cover art is generated (Fal AI), metadata extracted, and the episode is published to R2, PostgreSQL, podcast feeds, and social channels — all automatically.
 
@@ -93,26 +93,15 @@ After the script pipeline, the episode continues through:
 
 ## Tech Stack
 
-- **LLM Gateway** — [OpenRouter](https://openrouter.ai) (unified API routing to all models)
-- **TTS** — [Chatterbox](https://github.com/resemble-ai/chatterbox) with parallel GPU workers and pre-computed voice conditionals
-- **GPU Compute** — [Modal](https://modal.com) (serverless GPU infrastructure for TTS)
-- **Orchestration** — LangGraph pipeline with multi-agent architecture
+- **LLM** — [Anthropic](https://anthropic.com) Claude Sonnet 4.6 (generation) + Haiku 4.5 (utility) with native prompt caching
+- **TTS** — [Chatterbox](https://github.com/resemble-ai/chatterbox) Regular with parallel GPU workers and pre-computed voice conditionals
+- **GPU Compute** — [Modal](https://modal.com) (serverless GPU, 3x A10G for TTS)
+- **Orchestration** — [LangGraph](https://github.com/langchain-ai/langgraph) multi-agent pipeline
+- **Research** — [Tavily](https://tavily.com) web search + pgvector RAG
 - **Database** — Neon (serverless Postgres with pgvector for semantic search)
 - **Storage** — Cloudflare R2 (audio, images, transcripts)
 - **Frontend** — [Astro](https://astro.build) with interactive topic explorer (Sigma.js), deployed on Vercel
-- **Image Generation** — Fal AI (cover art)
-
-### LLM Models
-
-All LLM calls are routed through OpenRouter. Different stages use different models:
-
-| Stage | Models | Role |
-|-------|--------|------|
-| **Script Generation** | Xiaomi MiMo v2 Pro, DeepSeek v3.2, MiniMax M2.7, Gemini 3 Flash | Randomized pool for A/B testing — each episode uses one, selected at random |
-| **Script Review** | DeepSeek v3.2, Qwen 3 235B, Xiaomi MiMo v2 Flash | Cross-family review — always a different model family than the script writer |
-| **Prompt Enhancement** | Xiaomi MiMo v2 Flash | Transcription cleanup, typo fixing, host_notes extraction |
-| **Planning & Metadata** | Xiaomi MiMo v2 Flash | Episode planning, tagging, categorization |
-| **Transcription** | Gemini 3 Flash | Multimodal audio input (direct audio-to-text) |
+- **Image Generation** — Fal AI (cover art via Flux Schnell)
 
 ## Listen
 
@@ -134,6 +123,7 @@ All LLM calls are routed through OpenRouter. Different stages use different mode
   <a href="https://discord.gg/EYBksT2A8m"><img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="https://facebook.com/myweirdprompts"><img src="https://img.shields.io/badge/Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Facebook" /></a>
   <a href="https://huggingface.co/My-Weird-Prompts"><img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face" /></a>
+  <a href="https://www.moltbook.com/m/myweirdprompts"><img src="https://img.shields.io/badge/Moltbook-333333?style=flat-square" alt="Moltbook" /></a>
 </p>
 
 ## Links
